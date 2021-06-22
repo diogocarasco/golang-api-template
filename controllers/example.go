@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/diogocarasco/golang-api-template/models"
 	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 //Hello returns an example message
@@ -17,27 +18,27 @@ func Hello(c *gin.Context) {
 //Insert is a database insertion demo func
 func Insert(c *gin.Context) {
 
-	dbclient := c.Keys["dbCli"]
-	if err {
+	dbclient := c.Keys["dbCli"].(*mongo.Client)
+	if dbclient == nil {
 		c.JSON(400, gin.H{"message": "Something failed..."})
 		//LOG MESSAGE TO THIS SITUATION
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	defer dbclient.Disconnect(ctx)
-	res, err := dbclient.Collection("test").InsertOne(ctx, bson.D{
-		{"task", "test4"},
-		{"createdAt", "test"},
-		{"modifiedAt", "test3"},
-	})
-	if err {
+	defer cancel() // Release resources
+
+	document := models.Examplemodel{
+		Field1: "field1",
+		Field2: "field2",
+	}
+
+	res, err := dbclient.Database("teste").Collection("test").InsertOne(ctx, document)
+	if err != nil {
 		fmt.Println(err)
 	}
 
 	id := res.InsertedID
 
-	//c.JSON(200, gin.H{"message": fmt.Sprintf("Hi! This is an insert with id %s", id)})
-	c.JSON(200, gin.H{"message": "Hi! This is an insert with id %s"})
+	c.JSON(200, gin.H{"message": fmt.Sprintf("Hi! This is an insert with id %s", id)})
 
 }
