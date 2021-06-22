@@ -20,7 +20,7 @@ func InitializeDB() (*mongo.Client, error) {
 
 	// Connecting to MongoDB
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://golangapi:golangapi@cluster0.92n6j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+		"",
 	))
 	if err != nil {
 		log.Fatal(err)
@@ -32,8 +32,6 @@ func InitializeDB() (*mongo.Client, error) {
 		}
 		fmt.Println("Database connected!")
 	}
-	client.Database("test")
-
 	//var db type *utils.Database{client,ctx}
 	//db := utils.Database{dbclient: client, dbcontext: ctx}
 
