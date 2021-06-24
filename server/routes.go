@@ -9,6 +9,7 @@ import (
 func SetRoutes(server *gin.Engine) {
 
 	server.GET("/", controllers.Hello)
-	server.POST("/example", controllers.Insert)
+	server.POST("/insert", controllers.Insert)
+	server.POST("/insertmany", controllers.InsertMany)
 
 }
