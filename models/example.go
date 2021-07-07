@@ -1,6 +1,11 @@
 package models
 
 type Examplemodel struct {
-	Field1 string `json:"jsonfield1" bson:"bsonfield1"`
-	Field2 string `json:"jsonfield2" bson:"bsonfield2"`
+	ExampleId     string `json:"example_id" bson:"example_id" binding:"required" example:"9999"`
+	ExampleString string `json:"example_string" bson:"example_string" example:"Example string"`
+	ExampleNumber int    `json:"example_number" bson:"example_number" example:"Example number"`
+}
+
+type ExampleManyModel struct {
+	Examples []Examplemodel `json:"examples" `
 }
