@@ -1,0 +1,9 @@
+info:
+  contact:
+    name: Diogo Carasco
+    url: http://www.github.com/diogocarasco
+  description: A Gin-Gonic API template for general purposes
+  title: Go Gin-Gonic Example API
+  version: "1.0"
+paths: {}
+swagger: "2.0"

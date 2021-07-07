@@ -1,0 +1,13 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A Gin-Gonic API template for general purposes",
+        "title": "Go Gin-Gonic Example API",
+        "contact": {
+            "name": "Diogo Carasco",
+            "url": "http://www.github.com/diogocarasco"
+        },
+        "version": "1.0"
+    },
+    "paths": {}
+}
